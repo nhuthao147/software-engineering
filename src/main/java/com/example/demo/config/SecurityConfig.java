@@ -46,13 +46,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 		http.csrf().ignoringAntMatchers("/rest/**");
 		
 		http.authorizeRequests().antMatchers("/rest/login**").permitAll();
-		
+
 		http.antMatcher("/rest/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/rest/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 			.antMatchers(HttpMethod.POST, "/rest/**").access("hasRole('ROLE_ADMIN')")
-			.antMatchers(HttpMethod.DELETE, "/rest/**").access("hasRole('ROLE_ADMIN')").and()
-			.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+			.antMatchers(HttpMethod.DELETE, "/rest/**").access("hasRole('ROLE_ADMIN')")
+			.antMatchers(HttpMethod.PUT, "/rest/user**").access("hasRole('ROLE_USER')")
+			.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 			.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
 	}
 }

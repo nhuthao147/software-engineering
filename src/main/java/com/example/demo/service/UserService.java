@@ -22,4 +22,7 @@ public class UserService {
 	public boolean checkLogin(User userForm) {
 		return userDAO.checkLogin(userForm);
 	}
+
+	public int changePassword(String username, String password){
+		return userDAO.changePassword(username, password);}
 }

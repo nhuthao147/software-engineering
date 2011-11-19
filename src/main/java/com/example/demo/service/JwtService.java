@@ -79,6 +79,8 @@ public class JwtService {
 		JWTClaimsSet claims = getClaimsFromToken(token);
 		try {
 			username = claims.getStringClaim(USERNAME);
+		} catch (NullPointerException e) {
+			System.out.println("Token not valid!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,7 +103,7 @@ public class JwtService {
 		if (token == null || token.trim().length() == 0) {
 			return false;
 		}
-		String username = getUsernameFromToken(token);
+			String username = getUsernameFromToken(token);
 
 		if (username == null || username.isEmpty()) {
 			return false;
