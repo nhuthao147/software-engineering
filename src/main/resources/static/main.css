@@ -1,0 +1,25 @@
+table {
+	border-collapse: collapse;
+}
+
+table td, th {
+	padding: 5ps;
+}
+
+.create-button {
+	color: blue;
+	cursor: pointer;
+	padding: 5px
+}
+
+.edit-button {
+	background: #25A6E1;
+	cursor: pointer;
+	padding: 2px 5px
+}
+
+.delete-button {
+	background: #CD5C5C;
+	cursor: pointer;
+	padding: 2px 5px
+}
