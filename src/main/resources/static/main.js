@@ -1,5 +1,8 @@
 var app = angular.module("EmployeeManagement", []);
 
+app.run(function ($http){
+	$http.defaults.headers.common.Authorization = "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4ODYzMjAsInVzZXJuYW1lIjoiYWRtaW4ifQ.Nutz-9nhH4bmpE_yM39bOj5uCdMkH_4u4UPmt3JrpQo";
+});
 // Controller Part
 app.controller("EmployeeController", function($scope, $http){
 	$scope.employees=[];
