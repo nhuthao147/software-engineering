@@ -23,6 +23,7 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 
+	@CrossOrigin(origins = "http://localhost:3001")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(HttpServletRequest request, @RequestBody User user){
 		String result = "";
