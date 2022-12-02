@@ -2,13 +2,12 @@ package com.example.demo.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.demo.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entities.User;
 import com.example.demo.service.JwtService;
@@ -36,6 +35,32 @@ public class UserRestController {
 				result = "Wrong userId and password";
 				httpStatus = HttpStatus.BAD_REQUEST;
 			} 
+		}catch(Exception ex) {
+			result = "Server Error";
+			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<String>(result, httpStatus);
+	}
+	@PutMapping(value = "/user")
+	public ResponseEntity<String> changePassword( @RequestHeader ("Authorization") String token, @RequestBody User user){
+		user.setRolename("ROLE_USER");
+		String result = "";
+		HttpStatus httpStatus = null;
+		try {
+			String username = jwtService.getUsernameFromToken(token);
+			user.setUsername(username);
+			if(!userService.checkLogin(user)) {
+					int out = userService.changePassword(user.getUsername(), user.getPassword());
+					httpStatus = HttpStatus.OK;
+					if(out==1)
+						result = "Update successfully!";
+					else
+						result = "Update failed!";
+					return new ResponseEntity<String>(result, httpStatus);
+			} else {
+				result = "New password must be different from old password";
+				httpStatus = HttpStatus.BAD_REQUEST;
+			}
 		}catch(Exception ex) {
 			result = "Server Error";
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

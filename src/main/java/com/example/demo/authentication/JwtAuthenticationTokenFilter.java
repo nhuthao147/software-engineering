@@ -22,7 +22,7 @@ import com.example.demo.service.UserService;
 public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final static String TOKEN_HEADER = "authorization";
-	
+
 	@Autowired
 	private JwtService jwtService;
 
@@ -35,20 +35,20 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String authToken = httpRequest.getHeader(TOKEN_HEADER);
-		
+
 		if (jwtService.validateTokenLogin(authToken)) {
 			String username = jwtService.getUsernameFromToken(authToken);
-			
+
 			com.example.demo.entities.User user = userService.loadUserByUsername(username);
 			if (user != null) {
-				
+
 				//TODO: hard code
 				boolean enable = true;
 				boolean accountNonExpired = true;
 				boolean credentialsNonExpired = true;
 				boolean accountNonLocked = true;
 				UserDetails userDetails = new User(username, user.getPassword(), enable, accountNonExpired, credentialsNonExpired, accountNonLocked, user.getAuthorities());
-				
+
 				UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
 				SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -56,4 +56,5 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
 		}
 		super.doFilter(request, response, chain);
 	}
+
 }
