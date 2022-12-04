@@ -15,42 +15,42 @@ public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long empId;
-	private String empNo;
-	private String empName;
+	private Long emp_id;
+	private String emp_no;
+	private String emp_name;
 	
 	public Employee() {
 		super();
 	}
-	public Employee(Long empId, String empNo, String empName) {
+	public Employee(Long emp_id, String emp_no, String emp_name) {
 		super();
-		this.empId = empId;
-		this.empNo = empNo;
-		this.empName = empName;
+		this.emp_id = emp_id;
+		this.emp_no = emp_no;
+		this.emp_name = emp_name;
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "empId", unique = true, nullable = false)
+	@Column(name = "emp_id", unique = true, nullable = false)
 	public Long getEmpId() {
-		return empId;
+		return emp_id;
 	}
-	public void setEmpId(Long empId) {
-		this.empId = empId;
+	public void setEmpId(Long emp_id) {
+		this.emp_id = emp_id;
 	}
-	@Column(name = "empNo", unique = true, nullable = false, length = 10)
+	@Column(name = "emp_no", unique = true, nullable = false, length = 10)
 	public String getEmpNo() {
-		return empNo;
+		return emp_no;
 	}
-	public void setEmpNo(String empNo) {
-		this.empNo = empNo;
+	public void setEmpNo(String emp_no) {
+		this.emp_no = emp_no;
 	}
-	@Column(name = "empName", length = 20)
+	@Column(name = "emp_name", length = 20)
 	public String getEmpName() {
-		return empName;
+		return emp_name;
 	}
-	public void setEmpName(String empName) {
-		this.empName = empName;
+	public void setEmpName(String emp_name) {
+		this.emp_name = emp_name;
 	}
 	
 }

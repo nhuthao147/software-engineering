@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
 import java.util.List;
+
+import net.minidev.json.JSONUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +33,14 @@ public class TopicDAO {
     public Topic updateTopic(Topic empForm) {
         Session session = sessionFactory.getCurrentSession();
         Topic emp = session.get(Topic.class, empForm.getId());
-        emp.setEndDay(empForm.getEndDay());
-        emp.setStartDay(empForm.getStartDay());
-        emp.setTopicId(empForm.getTopicId());
-        emp.setDepartment(empForm.getDepartment());
+        emp.setend_day(empForm.getend_day());
+        emp.setstart_day(empForm.getstart_day());
+        emp.settopic_id(empForm.gettopic_id());
         emp.setDescription(empForm.getDescription());
-        emp.setStatus(empForm.getStatus());
-        emp.setHeadOfDepartment(empForm.getHeadOfDepartment());
-        emp.setStudents(empForm.getStudents());
+//        emp.setStatus(empForm.getStatus());
+//        emp.setDepartment(empForm.getDepartment());
+//        emp.setHeadOfDepartment(empForm.getHeadOfDepartment());
+//        emp.setStudents(empForm.getStudents());
         session.update(emp);
         return emp;
     }
@@ -51,8 +53,9 @@ public class TopicDAO {
 
     public List<Topic> getAllTopic(){
         Session session = sessionFactory.getCurrentSession();
-        @SuppressWarnings("unchecked")
         List<Topic> listTopic = session.createQuery(" FROM " + Topic.class.getName()).list();
         return listTopic;
+
+
     }
 }

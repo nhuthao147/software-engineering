@@ -36,8 +36,6 @@ public class InstructorDAO {
         emp.setBirthday(empForm.getBirthday());
         emp.setEndDay(empForm.getEndDay());
         emp.setStartDay(empForm.getStartDay());
-        emp.setUsername(empForm.getUsername());
-        emp.setDepartmentId(empForm.getDepartmentId());
         session.update(emp);
         return emp;
     }

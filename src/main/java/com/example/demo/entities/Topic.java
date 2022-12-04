@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -14,47 +15,56 @@ public class Topic implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
-    private String topicId;
+    private String topic_id;
     private String description;
-    private Date startDay;
-    private Date endDay;
-
-    @ManyToOne
-    @JoinColumn(name="departmentId")
-    private Department department;
+    private Date start_day;
+    private Date end_day;
 
     private int status;
-    @OneToMany(mappedBy = "topics", cascade = CascadeType.ALL)
-    private List<Student> students;
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    private Department departments;
+
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Student> students= new ArrayList<Student>();
 
     @ManyToOne
-    @JoinColumn(name="instructorId")
-    private Instructor headOfDepartment;
+    @JoinColumn(name="instructor_id")
+    private Instructor instructors;
 
-    public Topic(Long id, String topicId, String description, Date startDay, Date endDay, Department department, int status, List<Student> students, Instructor headOfDepartment) {
+    public Topic(Long id, String topic_id, String description, Date start_day, Date end_day, int status, Department departments, List<Student> students, Instructor instructors) {
         this.id = id;
-        this.topicId = topicId;
+        this.topic_id = topic_id;
         this.description = description;
-        this.startDay = startDay;
-        this.endDay = endDay;
-        this.department = department;
+        this.start_day = start_day;
+        this.end_day = end_day;
         this.status = status;
+        this.departments = departments;
         this.students = students;
-        this.headOfDepartment = headOfDepartment;
+        this.instructors = instructors;
     }
 
     public Topic() {super();
     }
 
-
-    @Column(name = "studentId", unique = true, nullable = false, length = 10)
-    public String getTopicId() {
-        return topicId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTopicId(String topicId) {
-        this.topicId = topicId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Column(name = "topic_id", unique = true, nullable = false, length = 10)
+    public String gettopic_id() {
+        return topic_id;
+    }
+
+    public void settopic_id(String topic_id) {
+        this.topic_id = topic_id;
     }
 
     @Column(name = "description", length = 300)
@@ -75,57 +85,46 @@ public class Topic implements Serializable {
         this.status = status;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+
+    @Column(name = "start_day")
+    public Date getstart_day() {
+        return start_day;
+    }
+
+    public void setstart_day(Date start_day) {
+        this.start_day = start_day;
+    }
+
+    @Column(name = "end_day")
+    public Date getend_day() {
+        return end_day;
+    }
+
+    public void setend_day(Date end_day) {
+        this.end_day = end_day;
+    }
+
+    public Department getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Department departments) {
+        this.departments = departments;
     }
 
     public List<Student> getStudents() {
         return students;
     }
 
-    public Instructor getHeadOfDepartment() {
-        return headOfDepartment;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
-    public void setHeadOfDepartment(Instructor headOfDepartment) {
-        this.headOfDepartment = headOfDepartment;
+    public Instructor getInstructors() {
+        return instructors;
     }
 
-    @Column(name = "startDay")
-    public Date getStartDay() {
-        return startDay;
+    public void setInstructors(Instructor instructors) {
+        this.instructors = instructors;
     }
-
-    public void setStartDay(Date startDay) {
-        this.startDay = startDay;
-    }
-
-    @Column(name = "endDay")
-    public Date getEndDay() {
-        return endDay;
-    }
-
-    public void setEndDay(Date endDay) {
-        this.endDay = endDay;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-    @Column(name = "id", unique = true, nullable = false)
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }

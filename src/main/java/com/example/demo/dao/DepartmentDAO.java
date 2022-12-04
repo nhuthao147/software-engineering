@@ -34,7 +34,6 @@ public class DepartmentDAO {
         emp.setDepartmentId(empForm.getDepartmentId());
         emp.setName(empForm.getName());
         emp.setId(empForm.getId());
-        emp.setHeadId(empForm.getHeadId());
         session.update(emp);
         return emp;
     }

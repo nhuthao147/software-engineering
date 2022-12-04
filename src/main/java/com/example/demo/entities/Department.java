@@ -11,35 +11,44 @@ public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
-    private String departmentId;
-    private String headId;
+
+    private String department_id;
+
     private String name;
 
-    @OneToMany(mappedBy = "topics", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departments", cascade = CascadeType.ALL)
     private Set<Topic> topics;
 
-    public Department(Long id, String departmentId, String headId, String name, Set<Topic> topics) {
+    @OneToMany(mappedBy = "departments", cascade = CascadeType.ALL)
+    private Set<Student> students;
+
+    @OneToMany(mappedBy = "departments", cascade = CascadeType.ALL)
+    private Set<Instructor> instructors;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "head_ID", referencedColumnName = "id")
+    private Instructor head;
+
+    public Department(Long id, String department_id, String name, Set<Topic> topics) {
         this.id = id;
-        this.departmentId = departmentId;
-        this.headId = headId;
+        this.department_id = department_id;
         this.name = name;
         this.topics = topics;
     }
 
-    public Department(Long id, String departmentId, String headId, String name) {
+    public Department(Long id, String department_id, String headId, String name) {
         this.id = id;
-        this.departmentId = departmentId;
-        this.headId = headId;
+        this.department_id = department_id;
         this.name = name;
     }
 
     public Department() {super();
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
     public Long getId() {
         return id;
     }
@@ -48,23 +57,15 @@ public class Department implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "departmentId", unique = true, nullable = false, length = 10)
+    @Column(name = "department_id", unique = true, nullable = false, length = 10)
     public String getDepartmentId() {
-        return departmentId;
+        return department_id;
     }
 
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentId(String department_id) {
+        this.department_id = department_id;
     }
 
-    @Column(name = "headId", length = 20)
-    public String getHeadId() {
-        return headId;
-    }
-
-    public void setHeadId(String headId) {
-        this.headId = headId;
-    }
 
     @Column(name = "name", length = 20)
     public String getName() {

@@ -11,56 +11,41 @@ public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
-    private String studentId;
+    private String student_id;
     private String name;
     private Date birthday;
-    private Date startDay;
-    private Date endDay;
-    private String departmentId;
-    private String username;
+    private Date start_day;
+    private Date end_day;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "username", referencedColumnName = "username")
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name="id")
-    private Topic topics;
+    @JoinColumn(name="topic_id")
+    private Topic topic;
 
-    public Student(Long id, String studentId, String name, Date birthday, Date startDay, Date endDay, String departmentId, String username, Topic topics) {
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    private Department departments;
+
+    public Student(Long id, String student_id, String name, Date birthday, Date start_day, Date end_day, Topic topic) {
         this.id = id;
-        this.studentId = studentId;
+        this.student_id = student_id;
         this.name = name;
         this.birthday = birthday;
-        this.startDay = startDay;
-        this.endDay = endDay;
-        this.departmentId = departmentId;
-        this.username = username;
-        this.topics = topics;
-    }
-
-    public Student(Long id, String studentId, String name, Date birthday, Date startDay, Date endDay, String departmentId, String username) {
-        this.id = id;
-        this.studentId = studentId;
-        this.name = name;
-        this.birthday = birthday;
-        this.startDay = startDay;
-        this.endDay = endDay;
-        this.departmentId = departmentId;
-        this.username = username;
+        this.start_day = start_day;
+        this.end_day = end_day;
+        this.topic = topic;
     }
 
     public Student() {super();
     }
 
-    public Topic getTopics() {
-        return topics;
-    }
-
-    public void setTopics(Topic topics) {
-        this.topics = topics;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
     public Long getId() {
         return id;
     }
@@ -68,13 +53,13 @@ public class Student implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    @Column(name = "studentId", unique = true, nullable = false, length = 10)
+    @Column(name = "student_id", unique = true, nullable = false, length = 10)
     public String getStudentId() {
-        return studentId;
+        return student_id;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setStudentId(String student_id) {
+        this.student_id = student_id;
     }
     @Column(name = "name", length = 20)
     public String getName() {
@@ -92,36 +77,20 @@ public class Student implements Serializable {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
-    @Column(name = "startDay", length = 20)
+    @Column(name = "start_day", length = 20)
     public Date getStartDay() {
-        return startDay;
+        return start_day;
     }
 
-    public void setStartDay(Date startDay) {
-        this.startDay = startDay;
+    public void setStartDay(Date start_day) {
+        this.start_day = start_day;
     }
-    @Column(name = "endDay", length = 20)
+    @Column(name = "end_day", length = 20)
     public Date getEndDay() {
-        return endDay;
+        return end_day;
     }
 
-    public void setEndDay(Date endDay) {
-        this.endDay = endDay;
-    }
-    @Column(name = "departmentId", length = 20)
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
-    }
-    @Column(name = "username", length = 20)
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEndDay(Date end_day) {
+        this.end_day = end_day;
     }
 }
