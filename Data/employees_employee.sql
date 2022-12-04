@@ -26,8 +26,11 @@ CREATE TABLE `employee` (
   `empId` int NOT NULL AUTO_INCREMENT,
   `empNo` varchar(45) DEFAULT NULL,
   `empName` varchar(45) DEFAULT NULL,
+  `emp_id` bigint NOT NULL,
+  `emp_name` varchar(20) DEFAULT NULL,
+  `emp_no` varchar(10) NOT NULL,
   PRIMARY KEY (`empId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +39,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'EM001','TEST1'),(6,'EM002','TEST2');
+INSERT INTO `employee` VALUES (1,'EM001','TEST1',0,NULL,''),(8,'EM008','TEST8',0,NULL,'');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-24 11:39:19
+-- Dump completed on 2022-12-04 14:55:23

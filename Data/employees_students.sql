@@ -16,29 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `students`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `rolename` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `students` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `birthday` datetime(6) DEFAULT NULL,
+  `department_id` varchar(20) DEFAULT NULL,
+  `end_day` datetime(6) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `start_day` datetime(6) DEFAULT NULL,
+  `student_id` varchar(10) NOT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  `topics` tinyblob,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_5mbus2m1tm2acucrp6t627jmx` (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `students`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (4,'admin','admin','ROLE_ADMIN'),(5,'user','user','ROLE_USER');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `students` WRITE;
+/*!40000 ALTER TABLE `students` DISABLE KEYS */;
+/*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
