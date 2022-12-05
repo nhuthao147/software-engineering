@@ -8,6 +8,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value= {"topics"})
 @Entity
 @Table(name = "instructors")
 public class Instructor implements Serializable {
@@ -37,7 +40,8 @@ public class Instructor implements Serializable {
 
     public Instructor() {super();
     }
-    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day, Department departments, List<Topic> topics) {
+    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day, Department departments, List<Topic> topics,
+    		User user) {
         this.id = id;
         this.instructor_id = instructor_id;
         this.name = name;
@@ -46,6 +50,7 @@ public class Instructor implements Serializable {
         this.end_day = end_day;
         this.departments = departments;
         this.topics = topics;
+        this.user = user;
     }
 
 
@@ -104,4 +109,11 @@ public class Instructor implements Serializable {
     public void setDepartments(Department departments) {
         this.departments = departments;
     }
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
 }

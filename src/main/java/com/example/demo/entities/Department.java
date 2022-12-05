@@ -6,6 +6,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value= {"topics","students","instructors", "head"})
 @Entity
 @Table(name = "departments")
 public class Department implements Serializable {
@@ -20,6 +23,8 @@ public class Department implements Serializable {
     private String department_id;
 
     private String name;
+    
+    private String head_id;
 
     @OneToMany(mappedBy = "departments", cascade = CascadeType.ALL)
     private Set<Topic> topics;
@@ -33,20 +38,18 @@ public class Department implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "head_ID", referencedColumnName = "id")
     private Instructor head;
-
-    public Department(Long id, String department_id, String name, Set<Topic> topics, List<Instructor> instructors) {
+    
+    public Department(Long id, String department_id, String name, Set<Topic> topics, List<Instructor> instructors, Instructor head,
+    		String head_id) {
         this.id = id;
         this.department_id = department_id;
         this.name = name;
         this.topics = topics;
         this.instructors = instructors;
+        this.head = head;
+        this.head_id = head.getInstructorId();
     }
 
-    public Department(Long id, String department_id, String headId, String name) {
-        this.id = id;
-        this.department_id = department_id;
-        this.name = name;
-    }
 
     public Department() {super();
     }
@@ -77,5 +80,48 @@ public class Department implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+	public Set<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
+	}
+
+	public List<Instructor> getInstructors() {
+		return instructors;
+	}
+
+	public void setInstructors(List<Instructor> instructors) {
+		this.instructors = instructors;
+	}
+
+	public Instructor getHead() {
+		return head;
+	}
+
+	public void setHead(Instructor head) {
+		this.head = head;
+	}
+	
+	@Column(name = "head_id")
+	public String getHead_id() {
+		return head_id;
+	}
+
+
+	public void setHead_id(String head_id) {
+		this.head_id = head_id;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
     
 }

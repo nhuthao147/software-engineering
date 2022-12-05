@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value= {"students"})
 @Entity
 @Table(name = "topics")
 public class Topic implements Serializable {
@@ -27,7 +30,7 @@ public class Topic implements Serializable {
     @JoinColumn(name="department_id")
     private Department departments;
 
-    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Student> students= new ArrayList<Student>();
 
     @ManyToOne

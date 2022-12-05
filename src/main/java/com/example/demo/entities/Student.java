@@ -105,20 +105,20 @@ public class Student implements Serializable {
 		this.user = user;
 	}
 
-	public Topic getTopic() {
-		return topic;
-	}
-
-	public void setTopic(Topic topic) {
-		this.topic = topic;
-	}
-
 	public Department getDepartments() {
 		return departments;
 	}
 
 	public void setDepartments(Department departments) {
 		this.departments = departments;
+	}
+
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
     
 }
