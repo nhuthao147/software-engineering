@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -33,7 +35,8 @@ public class Student implements Serializable {
     @JoinColumn(name="department_id")
     private Department departments;
 
-    public Student(Long id, String student_id, String name, Date birthday, Date start_day, Date end_day, Topic topic) {
+    public Student(Long id, String student_id, String name, Date birthday, Date start_day, Date end_day, Topic topic,
+    		User user, Department departments) {
         this.id = id;
         this.student_id = student_id;
         this.name = name;
@@ -41,6 +44,8 @@ public class Student implements Serializable {
         this.start_day = start_day;
         this.end_day = end_day;
         this.topic = topic;
+        this.user = user;
+        this.departments = departments;
     }
 
     public Student() {super();
@@ -93,4 +98,29 @@ public class Student implements Serializable {
     public void setEndDay(Date end_day) {
         this.end_day = end_day;
     }
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
+
+	public Department getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(Department departments) {
+		this.departments = departments;
+	}
+    
 }

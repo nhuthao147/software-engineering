@@ -33,9 +33,9 @@ public class TopicDAO {
     public Topic updateTopic(Topic empForm) {
         Session session = sessionFactory.getCurrentSession();
         Topic emp = session.get(Topic.class, empForm.getId());
-        emp.setend_day(empForm.getend_day());
-        emp.setstart_day(empForm.getstart_day());
-        emp.settopic_id(empForm.gettopic_id());
+        emp.setEnd_day(empForm.getEnd_day());
+        emp.setStart_day(empForm.getStart_day());
+        emp.setTopic_id(empForm.getTopic_id());
         emp.setDescription(empForm.getDescription());
 //        emp.setStatus(empForm.getStatus());
 //        emp.setDepartment(empForm.getDepartment());

@@ -1,7 +1,11 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -21,13 +25,13 @@ public class Instructor implements Serializable {
     private Date birthday;
     private Date start_day;
     private Date end_day;
-
     @ManyToOne
     @JoinColumn(name="department_id")
     private Department departments;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "instructors", cascade = CascadeType.ALL)
-    private Set<Topic> topics;
+    private List<Topic> topics = new ArrayList<Topic>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
@@ -35,15 +39,18 @@ public class Instructor implements Serializable {
 
     public Instructor() {super();
     }
-    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day) {
+
+    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day, Department departments, List<Topic> topics, User user) {
         this.id = id;
         this.instructor_id = instructor_id;
         this.name = name;
         this.birthday = birthday;
         this.start_day = start_day;
         this.end_day = end_day;
+        this.departments = departments;
+        this.topics = topics;
+        this.user = user;
     }
-
 
     public Long getId() {
         return id;
@@ -52,14 +59,7 @@ public class Instructor implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    @Column(name = "instructor_id", unique = true, nullable = false, length = 10)
-    public String getInstructorId() {
-        return instructor_id;
-    }
 
-    public void setInstructorId(String studentId) {
-        this.instructor_id = studentId;
-    }
     @Column(name = "name", length = 20)
     public String getName() {
         return name;
@@ -76,21 +76,54 @@ public class Instructor implements Serializable {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
+    
+    public Department getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Department departments) {
+        this.departments = departments;
+    }
+    @Column(name = "instructor_id", unique = true, nullable = false, length = 10)
+    public String getInstructor_id() {
+        return instructor_id;
+    }
+
+    public void setInstructor_id(String instructor_id) {
+        this.instructor_id = instructor_id;
+    }
+
     @Column(name = "start_day", length = 20)
-    public Date getStartDay() {
+    public Date getStart_day() {
         return start_day;
     }
 
-    public void setStartDay(Date start_day) {
+    public void setStart_day(Date start_day) {
         this.start_day = start_day;
     }
+
     @Column(name = "end_day", length = 20)
-    public Date getEndDay() {
+    public Date getEnd_day() {
         return end_day;
     }
 
-    public void setEndDay(Date end_day) {
+    public void setEnd_day(Date end_day) {
         this.end_day = end_day;
     }
 
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

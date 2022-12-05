@@ -31,7 +31,7 @@ public class DepartmentDAO {
     public Department updateYmployee(Department empForm) {
         Session session = sessionFactory.getCurrentSession();
         Department emp = session.get(Department.class, empForm.getId());
-        emp.setDepartmentId(empForm.getDepartmentId());
+        emp.setDepartment_id(empForm.getDepartment_id());
         emp.setName(empForm.getName());
         emp.setId(empForm.getId());
         session.update(emp);

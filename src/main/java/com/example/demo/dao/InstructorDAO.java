@@ -31,11 +31,11 @@ public class InstructorDAO {
     public Instructor updateInstructor(Instructor empForm) {
         Session session = sessionFactory.getCurrentSession();
         Instructor emp = session.get(Instructor.class, empForm.getId());
-        emp.setInstructorId(empForm.getInstructorId());
+        emp.setInstructor_id(empForm.getInstructor_id());
         emp.setName(empForm.getName());
         emp.setBirthday(empForm.getBirthday());
-        emp.setEndDay(empForm.getEndDay());
-        emp.setStartDay(empForm.getStartDay());
+        emp.setEnd_day(empForm.getEnd_day());
+        emp.setStart_day(empForm.getStart_day());
         session.update(emp);
         return emp;
     }
