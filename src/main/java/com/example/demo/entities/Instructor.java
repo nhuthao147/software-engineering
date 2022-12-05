@@ -1,7 +1,9 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -27,7 +29,7 @@ public class Instructor implements Serializable {
     private Department departments;
 
     @OneToMany(mappedBy = "instructors", cascade = CascadeType.ALL)
-    private Set<Topic> topics;
+    private List<Topic> topics = new ArrayList<Topic>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
@@ -35,13 +37,15 @@ public class Instructor implements Serializable {
 
     public Instructor() {super();
     }
-    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day) {
+    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day, Department departments, List<Topic> topics) {
         this.id = id;
         this.instructor_id = instructor_id;
         this.name = name;
         this.birthday = birthday;
         this.start_day = start_day;
         this.end_day = end_day;
+        this.departments = departments;
+        this.topics = topics;
     }
 
 
@@ -92,5 +96,12 @@ public class Instructor implements Serializable {
     public void setEndDay(Date end_day) {
         this.end_day = end_day;
     }
+    
+    public Department getDepartments() {
+        return departments;
+    }
 
+    public void setDepartments(Department departments) {
+        this.departments = departments;
+    }
 }

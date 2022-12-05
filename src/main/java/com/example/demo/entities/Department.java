@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -27,17 +28,18 @@ public class Department implements Serializable {
     private Set<Student> students;
 
     @OneToMany(mappedBy = "departments", cascade = CascadeType.ALL)
-    private Set<Instructor> instructors;
+    private List<Instructor> instructors;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "head_ID", referencedColumnName = "id")
     private Instructor head;
 
-    public Department(Long id, String department_id, String name, Set<Topic> topics) {
+    public Department(Long id, String department_id, String name, Set<Topic> topics, List<Instructor> instructors) {
         this.id = id;
         this.department_id = department_id;
         this.name = name;
         this.topics = topics;
+        this.instructors = instructors;
     }
 
     public Department(Long id, String department_id, String headId, String name) {
@@ -75,4 +77,5 @@ public class Department implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    
 }
