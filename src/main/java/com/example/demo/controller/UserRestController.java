@@ -14,6 +14,7 @@ import com.example.demo.service.JwtService;
 import com.example.demo.service.UserService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3001")
 @RequestMapping("/rest")
 public class UserRestController {
 
@@ -23,7 +24,7 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 
-	@CrossOrigin(origins = "http://localhost:3001")
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(HttpServletRequest request, @RequestBody User user){
 		String result = "";
