@@ -3,11 +3,8 @@ package com.example.demo.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.dto.UserProfile;
-import com.example.demo.entities.Employee;
-import com.example.demo.entities.Instructor;
-import com.example.demo.entities.Student;
-import com.example.demo.service.InstructorService;
-import com.example.demo.service.StudentService;
+import com.example.demo.entities.*;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,9 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.entities.User;
-import com.example.demo.service.JwtService;
-import com.example.demo.service.UserService;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Array;
@@ -42,6 +36,8 @@ public class UserRestController<T>{
 	@Autowired
 	private InstructorService instructorService;
 
+	@Autowired
+	private DepartmentService departmentService;
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(HttpServletRequest request, @RequestBody User user){
 		String result = "";
@@ -110,27 +106,50 @@ public class UserRestController<T>{
 
 			return userProfile;
 		}
-		else if (role=="ROLE_INSTRUCTOR"){
-			listFunction.add("QUAN_LY_TAI_KHOAN");
-			listFunction.add("IMPORT_FILE");
-			listFunction.add("POST_THONG_BAO");
+		else if (role.equals("ROLE_INSTRUCTOR")){
+			listFunction.add("DANH_GIA_DE_TAI");
+			listFunction.add("DANG_KY_DE_TAI");
 
-//			Instructor instructor = instructorService.findUserByStatusAndNameNamedParams(username);
-//			userProfile.setRole(role);
-//			userProfile.setBirthday(student.getBirthday());
-//			userProfile.setFunction(listFunction);
-//			userProfile.setBirthday(student.getBirthday());
-//			userProfile.setName(student.getName());
-//			userProfile.setUsername(username);
-//			userProfile.setStart_day(student.getStartDay());
-//			userProfile.setEnd_day(student.getEndDay());
-//			userProfile.setTopicid(student.getTopic().getTopic_id());
-//			userProfile.setUser_id(student.getStudentId());
-//			userProfile.setDepartmentid(student.getDepartments().getDepartment_id());
+			Instructor instructor = instructorService.findUserByStatusAndNameNamedParams(username);
+			userProfile.setRole(role);
+			userProfile.setBirthday(instructor.getBirthday());
+			userProfile.setFunction(listFunction);
+			userProfile.setBirthday(instructor.getBirthday());
+			userProfile.setName(instructor.getName());
+			userProfile.setUsername(username);
+			userProfile.setStart_day(instructor.getStart_day());
+			userProfile.setEnd_day(instructor.getEnd_day());
+			userProfile.setUser_id(instructor.getInstructor_id());
+			userProfile.setDepartmentid(instructor.getDepartments().getDepartment_id());
 
 			return userProfile;
 		}
-		return new UserProfile();
+		else if (role.equals("ROLE_HEAD")){
+			listFunction.add("QUAN_LY_DE_TAI");
+			listFunction.add("DANH_GIA_DE_TAI");
+			listFunction.add("PHAN_CONG_DANH_GIA_DE_TAI");
+			listFunction.add("PHE_DUYET_DE_TAI");
+			listFunction.add("POST_THONG_BAO");
+
+
+			List<String> heads = departmentService.getAllDepartments().stream().map(d->d.getHead_id()).toList();
+
+			Instructor instructor = instructorService.findUserByStatusAndNameNamedParams(username);
+			userProfile.setRole(role);
+			userProfile.setBirthday(instructor.getBirthday());
+			userProfile.setFunction(listFunction);
+			userProfile.setBirthday(instructor.getBirthday());
+			userProfile.setName(instructor.getName());
+			userProfile.setUsername(username);
+			userProfile.setStart_day(instructor.getStart_day());
+			userProfile.setEnd_day(instructor.getEnd_day());
+			userProfile.setUser_id(instructor.getInstructor_id());
+			userProfile.setDepartmentid(instructor.getDepartments().getDepartment_id());
+
+			return userProfile;
+		}
+		System.out.println("5555555555555555555555555555555555");
+		return userProfile;
 	}
 
 	@PutMapping(value = "/user")
