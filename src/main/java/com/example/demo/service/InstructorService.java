@@ -3,8 +3,10 @@ package com.example.demo.service;
 import java.util.List;
 
 
-
+import com.example.demo.Repository.IInstructorRepository;
+import com.example.demo.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,9 @@ public class InstructorService {
 
     @Autowired
     private InstructorDAO InstructorDAO;
+
+    @Autowired
+    private IInstructorRepository instructorRepository;
 
     public Instructor getInstructor(Long empId) {
         return InstructorDAO.getInstructor(empId);
@@ -38,4 +43,6 @@ public class InstructorService {
     public List<Instructor> getAllInstructors(){
         return InstructorDAO.getAllInstructor();
     }
+    Student findUserByStatusAndNameNamedParams(
+            @Param("username") String username){return instructorRepository.findUserByStatusAndNameNamedParams(username);}
 }

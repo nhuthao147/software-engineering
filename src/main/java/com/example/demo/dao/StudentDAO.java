@@ -1,8 +1,10 @@
 package com.example.demo.dao;
 
+import java.util.Collection;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +22,17 @@ public class StudentDAO {
         Session session = sessionFactory.getCurrentSession();
         Student emp = session.get(Student.class, empId);
         return emp;
+    }
+    public Student getStudent(String username){
+        Session session = sessionFactory.getCurrentSession();
+        @SuppressWarnings("unchecked")
+//        Student listStudent =(Student) session.createQuery("FROM Student WHERE User.username = "+username).list().get(0);
+        String sql = "FROM Student WHERE User.username = :username";
+        Query query = session.createQuery(sql);
+        query.setParameter("username", username);
+
+        Student listStudent2 = (Student) query.getResultList().get(0);
+        return listStudent2;
     }
 
     public Student addStudent(Student empForm) {

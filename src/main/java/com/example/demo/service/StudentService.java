@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
+import java.util.Collection;
 import java.util.List;
 
 
-
+import com.example.demo.Repository.IStudentRepository;
+import com.example.demo.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +19,8 @@ import com.example.demo.entities.Student;
 @Transactional
 public class StudentService {
 
+    @Autowired
+    private IStudentRepository studentRepository;
     @Autowired
     private StudentDAO StudentDAO;
 
@@ -38,4 +43,7 @@ public class StudentService {
     public List<Student> getAllStudents(){
         return StudentDAO.getAllStudent();
     }
+
+
+    public Student findUserByStatusAndNameNamedParams(String username){return studentRepository.findUserByStatusAndNameNamedParams(username);}
 }
