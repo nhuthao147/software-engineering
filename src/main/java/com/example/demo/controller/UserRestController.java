@@ -53,7 +53,7 @@ public class UserRestController<T>{
 			} else {
 				loginResult.setStatus(false);
 				loginResult.setToken("Wrong userId and password");
-				httpStatus = HttpStatus.UNAUTHORIZED;
+				httpStatus = HttpStatus.OK;
 			} 
 		}catch(Exception ex) {
 			result = "Server Error";
@@ -61,25 +61,25 @@ public class UserRestController<T>{
 		}
 		return new ResponseEntity<LoginResult>(loginResult, httpStatus);
 	}
-
-	@RequestMapping(value = "/options",
-			method = RequestMethod.GET,
-			produces = {MediaType.APPLICATION_JSON_VALUE,
-					MediaType.APPLICATION_XML_VALUE})
-	@ResponseBody
-	public List<String> getInstructor(@RequestHeader ("Authorization") String token){
-		String role = userService.loadUserByUsername(jwtService.getUsernameFromToken(token)).getRolename() ;
-		List<String> list = new ArrayList<String>();
-		if (role.equals("ROLE_ADMIN")){
-			list.add("QUAN_LY_TAI_KHOAN");
-			list.add("IMPORT_FILE");
-			list.add("POST_THONG_BAO");
-		}
-		else if (role.equals("ROLE_USER")){
-
-		}
-		return list;
-	}
+//
+//	@RequestMapping(value = "/options",
+//			method = RequestMethod.GET,
+//			produces = {MediaType.APPLICATION_JSON_VALUE,
+//					MediaType.APPLICATION_XML_VALUE})
+//	@ResponseBody
+//	public List<String> getInstructor(@RequestHeader ("Authorization") String token){
+//		String role = userService.loadUserByUsername(jwtService.getUsernameFromToken(token)).getRolename() ;
+//		List<String> list = new ArrayList<String>();
+//		if (role.equals("ROLE_ADMIN")){
+//			list.add("QUAN_LY_TAI_KHOAN");
+//			list.add("IMPORT_FILE");
+//			list.add("POST_THONG_BAO");
+//		}
+//		else if (role.equals("ROLE_USER")){
+//
+//		}
+//		return list;
+//	}
 
 	@RequestMapping(value = "/profile",
 			method = RequestMethod.GET,
