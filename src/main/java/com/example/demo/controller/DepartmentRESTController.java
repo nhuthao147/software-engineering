@@ -25,16 +25,7 @@ public class DepartmentRESTController {
 		List<Department> list = departmentService.getAllDepartments();
 		return list;
 	}
-
-	@RequestMapping(value = "/departments/{depId}",
-			method = RequestMethod.GET,
-			produces = {MediaType.APPLICATION_JSON_VALUE,
-					MediaType.APPLICATION_XML_VALUE})
-	@ResponseBody
-	public Department getDepartment(@PathVariable("depId") Long depId){
-		return departmentService.getDepartment(depId);
-	}
-
+	
 	@RequestMapping(value = "/departments",
 			method = RequestMethod.POST,
 			produces = {MediaType.APPLICATION_JSON_VALUE,
@@ -65,4 +56,14 @@ public class DepartmentRESTController {
 		departmentService.deleteDepartment(depId);
 		return "Delete successful";
 	}
+
+	@RequestMapping(value = "/departments/{depId}",
+			method = RequestMethod.GET,
+			produces = {MediaType.APPLICATION_JSON_VALUE,
+					MediaType.APPLICATION_XML_VALUE})
+	@ResponseBody
+	public Department getDepartment(@PathVariable("depId") Long depId){
+		return departmentService.getDepartment(depId);
+	}
+
 }
