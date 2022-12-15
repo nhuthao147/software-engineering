@@ -25,7 +25,10 @@ public class TopicService {
     }
 
     public Topic addTopic (Topic Topic) {
-        return TopicDAO.addTopic(Topic);
+        Topic topic = TopicDAO.addTopic(Topic);
+        topic.setTopic_id("T"+topic.getId());
+        TopicDAO.updateTopic(topic);
+        return topic;
     }
 
     public Topic updateTopic(Topic Topic) {

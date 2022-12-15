@@ -27,6 +27,7 @@ public class Student implements Serializable {
     @JoinColumn(name = "username", referencedColumnName = "username")
     private User user;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="topic_id")
     private Topic topic;
