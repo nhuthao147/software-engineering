@@ -64,7 +64,7 @@ public class TopicRESTController {
                     MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     public String updateTopic(@PathVariable("empId") Long empId){
-        System.out.println("(Service Side) Deleting Topic with Id: " + empId);
+        System.out.println("(Service Side) Deleting Topic with empId: " + empId);
         TopicService.deleteTopic(empId);
         return "Delete successful";
     }
