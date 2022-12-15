@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.demo.dto.LoginResult;
 import com.example.demo.dto.UserProfile;
 import com.example.demo.entities.*;
 import com.example.demo.service.*;
@@ -38,23 +39,27 @@ public class UserRestController<T>{
 
 	@Autowired
 	private DepartmentService departmentService;
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<String> login(HttpServletRequest request, @RequestBody User user){
+	public ResponseEntity<LoginResult> login(HttpServletRequest request, @RequestBody User user){
 		String result = "";
 		HttpStatus httpStatus = null;
+		LoginResult loginResult = new LoginResult();
 		try {
 			if(userService.checkLogin(user)) {
-				result = jwtService.generateTokenLogin(user.getUsername());
+				loginResult.setStatus(true);
+				loginResult.setToken(jwtService.generateTokenLogin(user.getUsername()));
 				httpStatus = HttpStatus.OK;
 			} else {
-				result = "Wrong userId and password";
-				httpStatus = HttpStatus.BAD_REQUEST;
+				loginResult.setStatus(false);
+				loginResult.setToken("Wrong userId and password");
+				httpStatus = HttpStatus.UNAUTHORIZED;
 			} 
 		}catch(Exception ex) {
 			result = "Server Error";
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
-		return new ResponseEntity<String>(result, httpStatus);
+		return new ResponseEntity<LoginResult>(loginResult, httpStatus);
 	}
 
 	@RequestMapping(value = "/options",
@@ -148,7 +153,6 @@ public class UserRestController<T>{
 
 			return userProfile;
 		}
-		System.out.println("5555555555555555555555555555555555");
 		return userProfile;
 	}
 

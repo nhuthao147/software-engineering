@@ -3,11 +3,13 @@ package com.example.demo.dto;
 import com.example.demo.entities.Department;
 import com.example.demo.entities.Topic;
 import com.example.demo.entities.User;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class UserProfile {
 
     private static final long serialVersionUID = 1L;
