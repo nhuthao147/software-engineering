@@ -46,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 		http.csrf().ignoringAntMatchers("/rest/**");
 		
 		http.authorizeRequests().antMatchers("/rest/login**").permitAll();
+		http.authorizeRequests().antMatchers("/rest/profile**").permitAll();
+		http.authorizeRequests().antMatchers("/rest/user**").permitAll();
 
 		http.antMatcher("/rest/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
@@ -55,5 +57,51 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 			.antMatchers(HttpMethod.PUT, "/rest/user**").access("hasRole('ROLE_USER')")
 			.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 			.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+
+//
+//		http.antMatcher("/rest/topic**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+//				.antMatchers(HttpMethod.GET, "/rest/topic**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER') or hasRole('ROLE_STUDENT') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.POST, "/rest/topic**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.DELETE, "/rest/topic**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.PUT, "/rest/topic**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+//				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+//
+//		http.antMatcher("/rest/department**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+//				.antMatchers(HttpMethod.GET, "/rest/department**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER') or hasRole('ROLE_STUDENT') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.POST, "/rest/department**").access("hasRole('ROLE_ADMIN')")
+//				.antMatchers(HttpMethod.DELETE, "/rest/department**").access("hasRole('ROLE_ADMIN')")
+//				.antMatchers(HttpMethod.PUT, "/rest/department**").access("hasRole('ROLE_ADMIN')")
+//				.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+//				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+//
+//		http.antMatcher("/rest/instructor**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+//				.antMatchers(HttpMethod.GET, "/rest/instructor**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER') or hasRole('ROLE_STUDENT') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.POST, "/rest/instructor**").access("hasRole('ROLE_ADMIN')")
+//				.antMatchers(HttpMethod.DELETE, "/rest/instructor**").access("hasRole('ROLE_ADMIN')")
+//				.antMatchers(HttpMethod.PUT, "/rest/instructor**").access("hasRole('ROLE_ADMIN')")
+//				.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+//				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+//
+//		http.antMatcher("/rest/student**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+//				.antMatchers(HttpMethod.GET, "/rest/student**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER') or hasRole('ROLE_STUDENT') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.POST, "/rest/student**").access("hasRole('ROLE_ADMIN')")
+//				.antMatchers(HttpMethod.DELETE, "/rest/student**").access("hasRole('ROLE_ADMIN')")
+//				.antMatchers(HttpMethod.PUT, "/rest/student**").access("hasRole('ROLE_ADMIN')")
+//				.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+//				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+//
+//		http.antMatcher("/rest/**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+//			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+//			.antMatchers(HttpMethod.GET, "/rest/**").access("hasRole('ROLE_ADMIN')")
+//			.antMatchers(HttpMethod.POST, "/rest/**").access("hasRole('ROLE_ADMIN')")
+//			.antMatchers(HttpMethod.DELETE, "/rest/**").access("hasRole('ROLE_ADMIN')")
+//			.antMatchers(HttpMethod.PUT, "/rest/user**").access("hasRole('ROLE_ADMIN')")
+//			.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+//			.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
 	}
 }

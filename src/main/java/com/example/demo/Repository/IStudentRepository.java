@@ -14,4 +14,6 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
     @Query("SELECT u FROM Student u WHERE u.user.username = :username")
     Student findUserByStatusAndNameNamedParams(
             @Param("username") String username);
+
+    public Student findStudentByTopic(Long id);
 }

@@ -37,10 +37,10 @@ public class TopicDAO {
         emp.setStart_day(empForm.getStart_day());
         emp.setTopic_id(empForm.getTopic_id());
         emp.setDescription(empForm.getDescription());
-//        emp.setStatus(empForm.getStatus());
-//        emp.setDepartment(empForm.getDepartment());
-//        emp.setHeadOfDepartment(empForm.getHeadOfDepartment());
-//        emp.setStudents(empForm.getStudents());
+        emp.setStatus(empForm.getStatus());
+        emp.setDepartments(empForm.getDepartments());
+        emp.setInstructors(empForm.getInstructors());
+        emp.setStudents(empForm.getStudents());
         session.update(emp);
         return emp;
     }
