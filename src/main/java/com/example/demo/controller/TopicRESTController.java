@@ -28,16 +28,7 @@ public class TopicRESTController {
         List<Topic> list = TopicService.getAllTopics();
         return list;
     }
-
-    @RequestMapping(value = "/topic/{empId}",
-            method = RequestMethod.GET,
-            produces = {MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE})
-    @ResponseBody
-    public Topic getTopic(@PathVariable("empId") Long empId){
-        return TopicService.getTopic(empId);
-    }
-
+    
     @RequestMapping(value = "/topic",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE,
@@ -68,5 +59,15 @@ public class TopicRESTController {
         TopicService.deleteTopic(empId);
         return "Delete successful";
     }
+
+    @RequestMapping(value = "/topic/{empId}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
+    @ResponseBody
+    public Topic getTopic(@PathVariable("empId") Long empId){
+        return TopicService.getTopic(empId);
+    }
+
 }
 
