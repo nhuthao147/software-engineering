@@ -15,7 +15,7 @@ import com.example.demo.service.TopicService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = {"http://localhost:3001", "https://software-engineering-kjob.vercel.app"})
 @RequestMapping("/rest")
 public class TopicRESTController {
 

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = {"http://localhost:3001", "https://software-engineering-kjob.vercel.app"})
 @RequestMapping("/rest")
 public class UserRestController<T>{
 

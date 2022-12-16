@@ -11,7 +11,7 @@ import com.example.demo.service.InstructorService;
 
 @RestController
 @RequestMapping("/rest")
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = {"http://localhost:3001", "https://software-engineering-kjob.vercel.app"})
 public class InstructorRESTController {
 	@Autowired
 	private InstructorService instructorService;
