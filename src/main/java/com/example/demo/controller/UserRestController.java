@@ -137,7 +137,7 @@ public class UserRestController<T>{
 			listFunction.add("POST_THONG_BAO");
 
 
-			List<String> heads = departmentService.getAllDepartments().stream().map(d->d.getHead_id()).toList();
+//			List<String> heads = departmentService.getAllDepartments().stream().map(d->d.getHead_id()).toList();
 
 			Instructor instructor = instructorService.findUserByStatusAndNameNamedParams(username);
 			userProfile.setRole(role);

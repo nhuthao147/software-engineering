@@ -31,6 +31,7 @@ public class Topic implements Serializable {
     @JoinColumn(name="department_id")
     private Department departments;
 
+    @JsonIgnore
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Student> students= new ArrayList<Student>();

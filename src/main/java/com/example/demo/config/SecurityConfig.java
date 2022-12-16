@@ -57,7 +57,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 			.antMatchers(HttpMethod.PUT, "/rest/user**").access("hasRole('ROLE_USER')")
 			.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 			.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
-
+//
+//		http.antMatcher("/rest/join**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
+//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+//				.antMatchers(HttpMethod.GET, "/rest/join**").access("hasRole('ROLE_ADMIN')or hasRole('ROLE_USER') or hasRole('ROLE_STUDENT') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.POST, "/rest/join**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.DELETE, "/rest/join**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_HEAD')")
+//				.antMatchers(HttpMethod.PUT, "/rest/join**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_INSTRUCTOR')or hasRole('ROLE_HEAD')")
+//				.and().addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+//				.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
 //
 //		http.antMatcher("/rest/topic**").httpBasic().authenticationEntryPoint(restServicesEntryPoint()).and()
 //				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()

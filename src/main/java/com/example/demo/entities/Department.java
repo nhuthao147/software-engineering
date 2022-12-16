@@ -39,7 +39,7 @@ public class Department implements Serializable {
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "head_ID", referencedColumnName = "id")
+    @JoinColumn(name = "head_0ID", referencedColumnName = "id")
     private Instructor head;
 
     private String head_id;

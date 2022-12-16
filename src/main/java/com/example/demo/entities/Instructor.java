@@ -37,6 +37,9 @@ public class Instructor implements Serializable {
     @JoinColumn(name = "username", referencedColumnName = "username")
     private User user;
 
+    @OneToOne(mappedBy = "head")
+    private JoinRequest joinRequest;
+
     public Instructor() {super();
     }
 

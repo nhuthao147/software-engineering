@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -28,6 +30,7 @@ public class Student implements Serializable {
     private User user;
 
     @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToOne
     @JoinColumn(name="topic_id")
     private Topic topic;
@@ -35,6 +38,10 @@ public class Student implements Serializable {
     @ManyToOne
     @JoinColumn(name="department_id")
     private Department departments;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "student", fetch = FetchType.EAGER)
+    private JoinRequest joinRequest;
 
     public Student(Long id, String student_id, String name, Date birthday, Date start_day, Date end_day, Topic topic,
     		User user, Department departments) {
@@ -123,5 +130,20 @@ public class Student implements Serializable {
 	public void setDepartments(Department departments) {
 		this.departments = departments;
 	}
-    
+
+    public String getStudent_id() {
+        return student_id;
+    }
+
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id;
+    }
+
+    public JoinRequest getJoinRequest() {
+        return joinRequest;
+    }
+
+    public void setJoinRequest(JoinRequest joinRequest) {
+        this.joinRequest = joinRequest;
+    }
 }
