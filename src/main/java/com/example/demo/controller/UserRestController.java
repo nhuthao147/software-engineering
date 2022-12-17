@@ -40,6 +40,11 @@ public class UserRestController<T>{
 	@Autowired
 	private DepartmentService departmentService;
 
+	@Autowired
+	private TopicService topicService;
+
+	@Autowired
+	private JoinRequestService joinRequestService;
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<LoginResult> login(HttpServletRequest request, @RequestBody User user){
 		String result = "";
@@ -105,7 +110,7 @@ public class UserRestController<T>{
 			userProfile.setUsername(username);
 			userProfile.setStart_day(student.getStartDay());
 			userProfile.setEnd_day(student.getEndDay());
-			userProfile.setTopicid(student.getTopic().getTopic_id());
+			userProfile.setTopicid(topicService.getTopic(joinRequestService.findUserByStatusAndNameNamedParams(student.getId()).getId()).getId().toString());
 			userProfile.setUser_id(student.getStudentId());
 			userProfile.setDepartmentid(student.getDepartments().getDepartment_id());
 

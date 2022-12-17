@@ -49,6 +49,7 @@ public class StudentDAO {
         emp.setBirthday(empForm.getBirthday());
         emp.setEndDay(empForm.getEndDay());
         emp.setStartDay(empForm.getStartDay());
+        emp.setTopic(empForm.getTopic());
         session.update(emp);
         return emp;
     }

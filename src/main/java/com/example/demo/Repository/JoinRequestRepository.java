@@ -1,5 +1,6 @@
 package com.example.demo.Repository;
 
+import com.example.demo.entities.Instructor;
 import com.example.demo.entities.JoinRequest;
 import com.example.demo.entities.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface JoinRequestRepository extends JpaRepository<JoinRequest, Long> {
-
-
+    @Query("SELECT u FROM JoinRequest u WHERE u.student.id = :username")
+    JoinRequest findUserByStatusAndNameNamedParams(
+            @Param("username") Long username);
 }

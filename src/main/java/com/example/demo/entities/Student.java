@@ -43,6 +43,7 @@ public class Student implements Serializable {
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     private JoinRequest joinRequest;
 
+
     public Student(Long id, String student_id, String name, Date birthday, Date start_day, Date end_day, User user, Topic topic, Department departments, JoinRequest joinRequest) {
         this.id = id;
         this.student_id = student_id;

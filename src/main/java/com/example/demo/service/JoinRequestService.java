@@ -2,10 +2,13 @@ package com.example.demo.service;
 
 import com.example.demo.Repository.JoinRequestRepository;
 import com.example.demo.dao.JoinRequestDAO;
+import com.example.demo.entities.Instructor;
 import com.example.demo.entities.JoinRequest;
 import com.example.demo.entities.JoinRequest;
+import com.example.demo.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +23,11 @@ public class JoinRequestService {
     @Autowired
     JoinRequestDAO joinRequestDAO;
 
+    @Autowired
+    StudentService studentService;
+
+    @Autowired
+    TopicService topicService;
     public JoinRequest getById(Long aLong) {
         return joinRequestRepository.getById(aLong);
     }
@@ -40,6 +48,11 @@ public class JoinRequestService {
 //        JoinRequest joinRequest = joinRequestDAO.addJoinRequest(joinRequest);
 //        JoinRequest.set("T"+JoinRequest.getId());
         joinRequestDAO.addJoinRequest(joinRequest);
+        Student student = studentService.getStudent(joinRequest.getStudent().getId());
+        System.out.println(joinRequest.getStudent().getId());
+        System.out.println(student.getId());
+        student.setTopic(topicService.getTopic(joinRequest.getTopic().getId()));
+        studentService.updateStudent(student);
         return joinRequest;
     }
 
@@ -53,5 +66,10 @@ public class JoinRequestService {
 
     public List<JoinRequest> getAllJoinRequests(){
         return joinRequestDAO.getAllJoinRequest();
+    }
+
+    public JoinRequest findUserByStatusAndNameNamedParams(
+            @Param("username") Long username){
+        return joinRequestRepository.findUserByStatusAndNameNamedParams(username);
     }
 }
