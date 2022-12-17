@@ -43,9 +43,33 @@ public class JoinRequestController {
     public JoinRequest updateTopicStatus(@RequestBody JoinRequest joinRequest){
 //        System.out.println("(Service Side) Editing Topic with status: " + joinRequest.getStatus());
         JoinRequest joinRequest1 = joinRequestService.getJoinRequest(joinRequest.getId());
-        System.out.println(joinRequest1.getId());
 //        System.out.println(joinRequest1.getStatus());
         joinRequest1.setStatus(joinRequest.getStatus());
+//        System.out.println(topic.getStatus());
+//        empForm.setTopic_id(topic.getTopic_id());
+//        empForm.setDescription(topic.getDescription());
+//        empForm.setDepartments(topic.getDepartments());
+////        empForm.setStudents(topic.getStudents());
+//        empForm.setInstructors(topic.getInstructors());
+//        empForm.setEnd_day(topic.getEnd_day());
+//        empForm.setStart_day(topic.getStart_day());
+//        empForm.setStatus(topic.getStatus());
+//        TopicService.updateTopic(topic);
+//        studentService.findStudentByTopic(topic.getId());
+        return joinRequestService.updateJoinRequest(joinRequest1);
+    }
+
+    @RequestMapping(value = "/join/review",
+            method = RequestMethod.PUT,
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
+    @ResponseBody
+    public JoinRequest updateTopicReview(@RequestBody JoinRequest joinRequest){
+//        System.out.println("(Service Side) Editing Topic with status: " + joinRequest.getStatus());
+        JoinRequest joinRequest1 = joinRequestService.getJoinRequest(joinRequest.getId());
+//        System.out.println(joinRequest1.getStatus());
+        joinRequest1.setPoint(joinRequest.getPoint());
+        joinRequest1.setReview(joinRequest.getReview());
 //        System.out.println(topic.getStatus());
 //        empForm.setTopic_id(topic.getTopic_id());
 //        empForm.setDescription(topic.getDescription());

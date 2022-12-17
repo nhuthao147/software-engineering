@@ -22,7 +22,7 @@ public class JoinRequest implements Serializable {
     private Topic topic;
 
     @Column(name = "point")
-    private int point;
+    private Double point;
 
     @Column(name = "review")
     private String review;
@@ -79,11 +79,11 @@ public class JoinRequest implements Serializable {
         this.status = status;
     }
 
-    public int getPoint() {
+    public Double getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(Double point) {
         this.point = point;
     }
 
