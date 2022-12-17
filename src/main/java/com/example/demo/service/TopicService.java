@@ -2,9 +2,10 @@ package com.example.demo.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
-
+import com.example.demo.Repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +21,13 @@ public class TopicService {
     @Autowired
     private TopicDAO TopicDAO;
 
+    @Autowired
+    private TopicRepository topicRepository;
     public Topic getTopic(Long empId) {
         return TopicDAO.getTopic(empId);
+    }
+    public Topic getById(Long aLong) {
+        return topicRepository.getById(aLong);
     }
 
     public Topic addTopic (Topic Topic) {

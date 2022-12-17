@@ -29,11 +29,12 @@ public class StudentService {
     }
 
     public Student addStudent (Student Student) {
-        return StudentDAO.addStudent(Student);
+        return studentRepository.save(Student);
     }
 
+
     public Student updateStudent(Student Student) {
-        return StudentDAO.updateStudent(Student);
+        return studentRepository.save(Student);
     }
 
     public void deleteStudent (Long empId) {

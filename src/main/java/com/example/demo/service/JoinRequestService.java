@@ -51,7 +51,7 @@ public class JoinRequestService {
         Student student = studentService.getById(joinRequest.getStudent().getId());
         System.out.println(joinRequest.getStudent().getId());
         System.out.println(student.getId());
-        student.setTopic(topicService.getTopic(joinRequest.getTopic().getId()));
+        student.setTopic(topicService.getById(joinRequest.getTopic().getId()));
         studentService.updateStudent(student);
         return joinRequest;
     }
