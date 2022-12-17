@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.Repository.UserRepository;
 import com.example.demo.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,12 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	public User loadUserByUsername(String username) {
-		return userDAO.loadUserByUsername(username);
+		return userRepository.findByUsername(username);
 	}
 	
 	public boolean checkLogin(User userForm) {
