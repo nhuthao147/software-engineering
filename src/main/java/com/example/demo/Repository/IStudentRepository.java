@@ -15,6 +15,7 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
     Student findUserByStatusAndNameNamedParams(
             @Param("username") String username);
 
+    Student findStudentByUser_Username(String username);
     public Student findStudentByTopic(Long id);
 
 }

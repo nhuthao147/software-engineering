@@ -46,7 +46,7 @@ public class StudentService {
     }
 
 
-    public Student findUserByStatusAndNameNamedParams(String username){return studentRepository.findUserByStatusAndNameNamedParams(username);}
+    public Student findUserByStatusAndNameNamedParams(String username){return studentRepository.findStudentByUser_Username(username);}
 
     public Student getById(Long aLong) {
         return studentRepository.getById(aLong);
