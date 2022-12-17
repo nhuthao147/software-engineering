@@ -53,7 +53,8 @@ public class TopicDAO {
 
     public List<Topic> getAllTopic(){
         Session session = sessionFactory.getCurrentSession();
-        List<Topic> listTopic = session.createQuery(" FROM " + Topic.class.getName()).list();
+        @SuppressWarnings("unchecked")
+		List<Topic> listTopic = session.createQuery(" FROM " + Topic.class.getName()).list();
         return listTopic;
 
 
