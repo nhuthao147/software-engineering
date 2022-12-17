@@ -26,6 +26,15 @@ public class JoinRequestController {
         return list;
     }
 
+    @RequestMapping(value = "/join",
+            method = RequestMethod.POST,
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
+    @ResponseBody
+    public JoinRequest getTopics(@RequestBody JoinRequest joinRequest){
+        return joinRequestService.addJoinRequest(joinRequest);
+    }
+
     @RequestMapping(value = "/join/status",
             method = RequestMethod.PUT,
             produces = {MediaType.APPLICATION_JSON_VALUE,

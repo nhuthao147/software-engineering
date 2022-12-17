@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "joinrequest")
@@ -19,6 +20,12 @@ public class JoinRequest implements Serializable {
     @ManyToOne
     @JoinColumn(name = "topicid")
     private Topic topic;
+
+    @Column(name = "point")
+    private int point;
+
+    @Column(name = "review")
+    private String review;
 
     @OneToOne
     @JoinColumn(name = "studentid", referencedColumnName = "id")
@@ -72,4 +79,19 @@ public class JoinRequest implements Serializable {
         this.status = status;
     }
 
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
 }

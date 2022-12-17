@@ -39,7 +39,7 @@ public class JoinRequestService {
     public JoinRequest addJoinRequest (JoinRequest joinRequest) {
 //        JoinRequest joinRequest = joinRequestDAO.addJoinRequest(joinRequest);
 //        JoinRequest.set("T"+JoinRequest.getId());
-        joinRequestDAO.updateJoinRequest(joinRequest);
+        joinRequestDAO.addJoinRequest(joinRequest);
         return joinRequest;
     }
 
