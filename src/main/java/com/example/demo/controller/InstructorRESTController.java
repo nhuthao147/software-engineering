@@ -65,4 +65,14 @@ public class InstructorRESTController {
 		instructorService.deleteInstructor(insId);
 		return "Delete successful";
 	}
+
+	@RequestMapping(value = "/instructors/find",
+			method = RequestMethod.GET,
+			produces = {MediaType.APPLICATION_JSON_VALUE,
+					MediaType.APPLICATION_XML_VALUE})
+	@ResponseBody
+	public List<Instructor> deleteInstructor(@RequestBody Instructor instructor){
+		return instructorService.findInstructorsByNameContaining(instructor.getName());
+	}
+
 }

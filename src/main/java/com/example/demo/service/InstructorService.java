@@ -45,4 +45,13 @@ public class InstructorService {
     }
     public Instructor findUserByStatusAndNameNamedParams(
             @Param("username") String username){return instructorRepository.findUserByStatusAndNameNamedParams(username);}
+
+//    @org.springframework.data.jpa.repository.Query("SELECT u FROM Instructor u WHERE u.name like %:username%")
+    public List<Instructor> findInstructorsByNameContaining(@Param("name") String name) {
+        return instructorRepository.findInstructorsByNameContaining(name);
+    }
+
+    public List<Instructor> getAllByNameContaining(String name){return InstructorDAO.getAllByNameContaining(name);}
+
+
 }

@@ -52,4 +52,11 @@ public class InstructorDAO {
         List<Instructor> listInstructor = session.createQuery(" FROM " + Instructor.class.getName()).list();
         return listInstructor;
     }
+    public List<Instructor> getAllByNameContaining(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        @SuppressWarnings("unchecked")
+        List<Instructor> listInstructor =
+                session.createQuery(" FROM " + Instructor.class.getName() + " WHERE name LIKE " + "" + name.toString() + "").list();
+        return listInstructor;
+    }
 }
