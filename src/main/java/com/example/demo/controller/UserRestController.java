@@ -110,9 +110,12 @@ public class UserRestController<T>{
 			userProfile.setUsername(username);
 			userProfile.setStart_day(student.getStartDay());
 			userProfile.setEnd_day(student.getEndDay());
-			if(topicService.getTopic(joinRequestService.findUserByStatusAndNameNamedParams(student.getId()).getId()) != null){
-				userProfile.setTopicid(topicService.getTopic(joinRequestService.findUserByStatusAndNameNamedParams(student.getId()).getId()).getId().toString());
+			if(joinRequestService.findUserByStatusAndNameNamedParams(student.getId()) != null){
+				if(topicService.getTopic(joinRequestService.findUserByStatusAndNameNamedParams(student.getId()).getId()) != null){
+					userProfile.setTopicid(topicService.getTopic(joinRequestService.findUserByStatusAndNameNamedParams(student.getId()).getId()).getId().toString());
 
+				}
+				
 			}
 			userProfile.setUser_id(student.getStudentId());
 			userProfile.setDepartmentid(student.getDepartments().getDepartment_id());
