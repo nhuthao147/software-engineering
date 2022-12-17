@@ -41,7 +41,7 @@ public class InstructorService {
     }
 
     public List<Instructor> getAllInstructors(){
-        return InstructorDAO.getAllInstructor();
+        return instructorRepository.findAll();
     }
     public Instructor findUserByStatusAndNameNamedParams(
             @Param("username") String username){return instructorRepository.findUserByStatusAndNameNamedParams(username);}

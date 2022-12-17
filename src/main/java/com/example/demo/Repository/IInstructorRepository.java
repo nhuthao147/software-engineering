@@ -19,4 +19,5 @@ public interface IInstructorRepository extends JpaRepository<Instructor, Long> {
     @Query("SELECT u FROM Instructor u WHERE u.name like %:name%")
     List<Instructor> findInstructorsByNameContaining(
             @Param("name") String name);
+
 }

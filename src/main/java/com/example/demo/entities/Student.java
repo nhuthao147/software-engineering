@@ -40,20 +40,20 @@ public class Student implements Serializable {
     private Department departments;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "student", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     private JoinRequest joinRequest;
 
-    public Student(Long id, String student_id, String name, Date birthday, Date start_day, Date end_day, Topic topic,
-    		User user, Department departments) {
+    public Student(Long id, String student_id, String name, Date birthday, Date start_day, Date end_day, User user, Topic topic, Department departments, JoinRequest joinRequest) {
         this.id = id;
         this.student_id = student_id;
         this.name = name;
         this.birthday = birthday;
         this.start_day = start_day;
         this.end_day = end_day;
-        this.topic = topic;
         this.user = user;
+        this.topic = topic;
         this.departments = departments;
+        this.joinRequest = joinRequest;
     }
 
     public Student() {super();

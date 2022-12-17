@@ -43,7 +43,7 @@ public class Instructor implements Serializable {
     public Instructor() {super();
     }
 
-    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day, Department departments, List<Topic> topics, User user) {
+    public Instructor(Long id, String instructor_id, String name, Date birthday, Date start_day, Date end_day, Department departments, List<Topic> topics, User user, JoinRequest joinRequest) {
         this.id = id;
         this.instructor_id = instructor_id;
         this.name = name;
@@ -53,6 +53,7 @@ public class Instructor implements Serializable {
         this.departments = departments;
         this.topics = topics;
         this.user = user;
+        this.joinRequest = joinRequest;
     }
 
     public Long getId() {

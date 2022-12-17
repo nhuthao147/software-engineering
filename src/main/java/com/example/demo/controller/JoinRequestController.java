@@ -26,6 +26,15 @@ public class JoinRequestController {
         return list;
     }
 
+    @RequestMapping(value = "/head/join",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
+    @ResponseBody
+    public List<JoinRequest> getTopicsHead(){
+        List<JoinRequest> list = joinRequestService.findAll();
+        return list;
+    }
     @RequestMapping(value = "/join",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE,
