@@ -28,13 +28,13 @@ public class StudentService {
         return StudentDAO.getStudent(empId);
     }
 
-    public Student addStudent (Student Student) {
-        return studentRepository.save(Student);
+    public Student addStudent (Student student) {
+        return studentRepository.save(student);
     }
 
 
-    public Student updateStudent(Student Student) {
-        return studentRepository.save(Student);
+    public Student updateStudent(Student student) {
+        return studentRepository.save(student);
     }
 
     public void deleteStudent (Long empId) {
