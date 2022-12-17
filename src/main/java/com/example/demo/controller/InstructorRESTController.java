@@ -71,7 +71,7 @@ public class InstructorRESTController {
 			produces = {MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
-	public List<Instructor> deleteInstructor(@RequestBody Instructor instructor){
+	public List<Instructor> getInstructorByName(@RequestBody Instructor instructor){
 		return instructorService.findInstructorsByNameContaining(instructor.getName());
 	}
 
