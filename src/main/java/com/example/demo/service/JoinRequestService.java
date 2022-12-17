@@ -48,7 +48,7 @@ public class JoinRequestService {
 //        JoinRequest joinRequest = joinRequestDAO.addJoinRequest(joinRequest);
 //        JoinRequest.set("T"+JoinRequest.getId());
         joinRequestDAO.addJoinRequest(joinRequest);
-        Student student = studentService.getStudent(joinRequest.getStudent().getId());
+        Student student = studentService.getById(joinRequest.getStudent().getId());
         System.out.println(joinRequest.getStudent().getId());
         System.out.println(student.getId());
         student.setTopic(topicService.getTopic(joinRequest.getTopic().getId()));
