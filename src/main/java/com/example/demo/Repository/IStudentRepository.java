@@ -7,15 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface IStudentRepository extends JpaRepository<Student, Long> {
-    @Query("SELECT u FROM Student u WHERE u.user.username = :username")
-    Student findUserByStatusAndNameNamedParams(
-            @Param("username") String username);
 
-    Student findStudentByUser_Username(String username);
+    public List<Student> findStudentsByUser_Username(String username);
     public Student findStudentByTopic(Long id);
 
 }

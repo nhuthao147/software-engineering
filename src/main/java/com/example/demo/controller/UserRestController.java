@@ -101,7 +101,7 @@ public class UserRestController<T>{
 			listFunction.add("IMPORT_FILE");
 			listFunction.add("POST_THONG_BAO");
 
-			Student student = studentService.findUserByStatusAndNameNamedParams(username);
+			Student student = studentService.findStudentByUser_Username(username);
 			userProfile.setRole(role);
 			userProfile.setBirthday(student.getBirthday());
 			userProfile.setFunction(listFunction);

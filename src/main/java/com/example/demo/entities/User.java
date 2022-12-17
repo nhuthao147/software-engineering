@@ -21,10 +21,10 @@ public class User implements Serializable {
 	private String password;
 	private String rolename;
 
-	@OneToOne(mappedBy = "users")
+	@OneToOne(mappedBy = "users",  cascade = CascadeType.ALL)
 	private Student student;
 
-	@OneToOne(mappedBy = "users")
+	@OneToOne(mappedBy = "users",  cascade = CascadeType.ALL)
 	private Instructor instructor;
 
 	public User(final String username,final String password,final String rolename) {

@@ -16,5 +16,6 @@ public interface JoinRequestRepository extends JpaRepository<JoinRequest, Long> 
     JoinRequest findUserByStatusAndNameNamedParams(
             @Param("username") Long username);
 
+    public List <JoinRequest> findAll();
     JoinRequest findByTopic_Id(Long id);
 }
