@@ -35,6 +35,18 @@ public class JoinRequestController {
         List<JoinRequest> list = joinRequestService.findAll();
         return list;
     }
+
+    @RequestMapping(value = "/student/join",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
+    @ResponseBody
+    public JoinRequest getTopicsStudent(@RequestBody JoinRequest joinRequest){
+        System.out.println(joinRequest.getTopic().getId());
+        JoinRequest list = joinRequestService.findByTopic_Id(joinRequest.getTopic().getId());
+        return list;
+    }
+
     @RequestMapping(value = "/join",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE,

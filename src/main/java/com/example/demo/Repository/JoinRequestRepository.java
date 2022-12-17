@@ -15,4 +15,6 @@ public interface JoinRequestRepository extends JpaRepository<JoinRequest, Long> 
     @Query("SELECT u FROM JoinRequest u WHERE u.student.id = :username")
     JoinRequest findUserByStatusAndNameNamedParams(
             @Param("username") Long username);
+
+    JoinRequest findByTopic_Id(Long id);
 }

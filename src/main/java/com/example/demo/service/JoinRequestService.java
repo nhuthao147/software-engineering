@@ -72,4 +72,8 @@ public class JoinRequestService {
             @Param("username") Long username){
         return joinRequestRepository.findUserByStatusAndNameNamedParams(username);
     }
+
+    public JoinRequest findByTopic_Id(Long id) {
+        return joinRequestRepository.findByTopic_Id(id);
+    }
 }
