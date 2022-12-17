@@ -57,6 +57,7 @@ public class TopicRESTController {
     @ResponseBody
     public Topic updateTopic(@RequestBody Topic empForm){
         System.out.println("(Service Side) Editing Topic with id: " + empForm.getId());
+        empForm.setTopic_id("T"+empForm.getId());
         return TopicService.updateTopic(empForm);
     }
     @RequestMapping(value = "/topic/status",
