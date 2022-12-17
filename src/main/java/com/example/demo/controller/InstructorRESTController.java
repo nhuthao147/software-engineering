@@ -42,6 +42,7 @@ public class InstructorRESTController {
 	@ResponseBody
 	public Instructor addInstructor(@RequestBody Instructor insForm){
 		System.out.println("(Service Side) Creating instructor with instructorId: " + insForm.getInstructor_id());
+		insForm.setInstructor_id("GV");
 		return instructorService.addInstructor(insForm);
 	}
 

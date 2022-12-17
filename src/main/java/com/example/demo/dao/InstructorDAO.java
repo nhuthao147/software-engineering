@@ -25,6 +25,7 @@ public class InstructorDAO {
     public Instructor addInstructor(Instructor empForm) {
         Session session = sessionFactory.getCurrentSession();
         session.save(empForm);
+        empForm.setInstructor_id("GV"+empForm.getId());
         return empForm;
     }
 
